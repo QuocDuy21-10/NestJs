@@ -1,10 +1,6 @@
 {
-  "name": "nest-basic-hoidanit",
+  "name": "nest-basic",
   "version": "0.0.1",
-  "description": "https://hoidanit.com.vn/",
-  "author": "Hỏi Dân IT",
-  "private": true,
-  "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -23,7 +19,9 @@
   "dependencies": {
     "@nestjs/common": "9.4.0",
     "@nestjs/core": "9.4.0",
+    "@nestjs/mapped-types": "^1.2.2",
     "@nestjs/platform-express": "9.4.0",
+    "ejs": "3.1.9",
     "reflect-metadata": "0.1.13",
     "rxjs": "7.2.0"
   },
