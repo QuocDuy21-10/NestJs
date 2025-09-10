@@ -3,7 +3,7 @@ import {
   ArrayMinSize,
   IsArray,
   IsBoolean,
-  IsDateString,
+  IsDate,
   IsInt,
   IsMongoId,
   IsNotEmpty,
@@ -29,6 +29,10 @@ class Company {
   @IsString({ message: 'Company name must be a string' })
   @MaxLength(100, { message: 'Company name is too long (max: 100 chars)' })
   name: string;
+
+  @IsNotEmpty({ message: 'Logo is required' })
+  @IsString({ message: 'Logo must be a string' })
+  logo: String;
 }
 
 export class CreateJobDto {
@@ -39,9 +43,8 @@ export class CreateJobDto {
 
   @IsNotEmpty({ message: 'Skill is required' })
   @IsArray({ message: 'Skill must be an array' })
-  @ArrayMinSize(1, { message: 'At least one skill is required' })
   @IsString({ each: true, message: 'Each skill must be a string' })
-  skill: string[];
+  skills: string[];
 
   @IsNotEmptyObject({ nullable: true }, { message: 'Company is required' })
   @IsObject({ message: 'Company must be an object' })
@@ -77,11 +80,13 @@ export class CreateJobDto {
 
   @IsNotEmpty({ message: 'Start date is required' })
   @Transform(({ value }) => new Date(value))
+  @IsDate({ message: 'startDate có định dạng là Date' })
   startDate: Date;
 
   @IsNotEmpty({ message: 'End date is required' })
   @Transform(({ value }) => new Date(value))
   @IsAfter('startDate', { message: 'End date must be after start date' })
+  @IsDate({ message: 'endDate có định dạng là Date' })
   endDate: Date;
 
   @IsNotEmpty({ message: 'isActive is required' })

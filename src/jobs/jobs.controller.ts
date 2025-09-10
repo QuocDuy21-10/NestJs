@@ -16,6 +16,7 @@ export class JobsController {
   }
 
   @Get()
+  @Public()
   @ResponseMessage('Jobs have been retrieved successfully')
   findAll(
     @Query('current') currentPage: string,
@@ -25,8 +26,8 @@ export class JobsController {
     return this.jobsService.findAll(+currentPage, +limit, query);
   }
 
-  @Public()
   @Get(':id')
+  @Public()
   @ResponseMessage('Job has been found successfully')
   findOne(@Param('id') id: string) {
     return this.jobsService.findOne(id);

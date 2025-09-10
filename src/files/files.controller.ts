@@ -24,7 +24,7 @@ export class FilesController {
   @Public()
   @Post('upload')
   @ResponseMessage('Upload single file successfully')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(FileInterceptor('fileUpload'))
   uploadFile(
     @UploadedFile(
       new ParseFilePipeBuilder()
@@ -42,7 +42,7 @@ export class FilesController {
     file: Express.Multer.File,
   ) {
     return {
-      filename: file.filename,
+      fileName: file.filename,
     };
   }
 
