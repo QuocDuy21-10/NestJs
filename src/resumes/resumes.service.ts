@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateResumeDto, CreateUserCvDto } from './dto/create-resume.dto';
+import { CreateUserCvDto } from './dto/create-resume.dto';
 import { UpdateResumeDto } from './dto/update-resume.dto';
 import { IUser } from 'src/users/users.interface';
 import { Resume, ResumeDocument } from './schemas/resume.schema';
@@ -93,7 +93,7 @@ export class ResumesService {
 
   async getResumeByUser(user: IUser) {
     return await this.resumeModel
-      .findOne({ userId: user._id })
+      .find({ userId: user._id })
       .sort('-createdAt')
       .populate([
         {
