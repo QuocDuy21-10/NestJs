@@ -101,8 +101,8 @@ export class UsersService {
       meta: {
         current: currentPage,
         pageSize: limit,
-        totalPages,
-        totalItems,
+        pages: totalPages,
+        total: totalItems,
       },
     };
   }

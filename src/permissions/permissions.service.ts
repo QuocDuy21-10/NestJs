@@ -63,8 +63,8 @@ export class PermissionsService {
       meta: {
         current: currentPage,
         pageSize: limit,
-        totalPages,
-        totalItems,
+        pages: totalPages,
+        total: totalItems,
       },
     };
   }

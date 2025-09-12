@@ -60,8 +60,8 @@ export class RolesService {
       meta: {
         current: currentPage,
         pageSize: limit,
-        totalPages,
-        totalItems,
+        pages: totalPages,
+        total: totalItems,
       },
     };
   }

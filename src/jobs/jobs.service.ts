@@ -41,8 +41,8 @@ export class JobsService {
       meta: {
         current: currentPage,
         pageSize: limit,
-        totalPages,
-        totalItems,
+        pages: totalPages,
+        total: totalItems,
       },
     };
   }
