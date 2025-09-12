@@ -16,7 +16,7 @@ export class ResumesController {
   }
 
   @Get()
-  @ResponseMessage('Resumes have been retrieved successfully')
+  @ResponseMessage('Create resume ')
   findAll(
     @Query('current') currentPage: string,
     @Query('pageSize') limit: string,
@@ -26,25 +26,25 @@ export class ResumesController {
   }
 
   @Get(':id')
-  @ResponseMessage('Resume has been retrieved successfully')
+  @ResponseMessage('Get resume details by id')
   findOne(@Param('id') id: string) {
     return this.resumesService.findOne(id);
   }
 
   @Patch(':id')
-  @ResponseMessage('Resume updated status successfully')
+  @ResponseMessage('Update resume')
   update(@Param('id') id: string, @Body() updateResumeDto: UpdateResumeDto, @User() user: IUser) {
     return this.resumesService.update(id, updateResumeDto, user);
   }
 
   @Delete(':id')
-  @ResponseMessage('Resume deleted successfully')
+  @ResponseMessage('Delete resume')
   remove(@Param('id') id: string, @User() user: IUser) {
     return this.resumesService.remove(id, user);
   }
 
   @Post('by-user')
-  @ResponseMessage('Resume created successfully')
+  @ResponseMessage('Get resume by user')
   getResumeByUser(@User() user: IUser) {
     return this.resumesService.getResumeByUser(user);
   }

@@ -10,13 +10,13 @@ export class PermissionsController {
   constructor(private readonly permissionsService: PermissionsService) {}
 
   @Post()
-  @ResponseMessage('Permission has been created successfully')
+  @ResponseMessage('Create permission')
   create(@Body() createPermissionDto: CreatePermissionDto, @User() user: IUser) {
     return this.permissionsService.create(createPermissionDto, user);
   }
 
   @Get()
-  @ResponseMessage('Permissions have been retrieved successfully')
+  @ResponseMessage('Get permissions list')
   findAll(
     @Query('current') currentPage: string,
     @Query('pageSize') limit: string,
@@ -26,13 +26,13 @@ export class PermissionsController {
   }
 
   @Get(':id')
-  @ResponseMessage('Permission has been found successfully')
+  @ResponseMessage('Get permission details by id')
   findOne(@Param('id') id: string) {
     return this.permissionsService.findOne(id);
   }
 
   @Patch(':id')
-  @ResponseMessage('Permission has been updated successfully')
+  @ResponseMessage('Update permission')
   update(
     @Param('id') id: string,
     @Body() updatePermissionDto: UpdatePermissionDto,
@@ -42,7 +42,7 @@ export class PermissionsController {
   }
 
   @Delete(':id')
-  @ResponseMessage('Permission has been deleted successfully')
+  @ResponseMessage('Delete permission')
   remove(@Param('id') id: string, @User() user: IUser) {
     return this.permissionsService.remove(id, user);
   }

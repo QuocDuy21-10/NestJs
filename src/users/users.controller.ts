@@ -10,13 +10,13 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  @ResponseMessage('Create a user successfully')
+  @ResponseMessage('Create a user')
   create(@Body() CreateUserDto: CreateUserDto, @User() user: IUser) {
     return this.usersService.create(CreateUserDto, user);
   }
 
   @Get()
-  @ResponseMessage('Get users successfully')
+  @ResponseMessage('Get users list')
   findAll(
     @Query('current') currentPage: string,
     @Query('pageSize') limit: string,
@@ -27,19 +27,19 @@ export class UsersController {
 
   @Public()
   @Get(':id')
-  @ResponseMessage('Get a user successfully')
+  @ResponseMessage('Get an user details by id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
 
   @Patch(':id')
-  @ResponseMessage('Update user successfully')
+  @ResponseMessage('Update an user')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto, @User() user: IUser) {
     return this.usersService.update(id, updateUserDto, user);
   }
 
   @Delete(':id')
-  @ResponseMessage('Delete user successfully')
+  @ResponseMessage('Delete an user')
   remove(@Param('id') id: string, @User() user: IUser) {
     return this.usersService.remove(id, user);
   }

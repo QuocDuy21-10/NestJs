@@ -13,20 +13,20 @@ export class AuthController {
   @Public()
   @UseGuards(LocalAuthGuard)
   @Post('/login')
-  @ResponseMessage('Login successfully')
+  @ResponseMessage('Login')
   handleLogin(@Req() req, @Res({ passthrough: true }) response: Response) {
     return this.authService.login(req.user, response);
   }
 
   @Public()
   @Post('/register')
-  @ResponseMessage('Register a new user successfully')
+  @ResponseMessage('Register a new user')
   handleRegister(@Body() RegisterUserDto: RegisterUserDto) {
     return this.authService.register(RegisterUserDto);
   }
 
   @Get('/account')
-  @ResponseMessage('Get user information successfully')
+  @ResponseMessage('Get user information')
   async handleGetAccount(@User() user: IUser) {
     // query database to get permissions
     const tempRole = (await this.rolesService.findOne(user.role._id)) as any;
@@ -36,14 +36,14 @@ export class AuthController {
 
   @Public()
   @Get('/refresh')
-  @ResponseMessage('Get new access token successfully')
+  @ResponseMessage('Get new access token, refresh token')
   handleRefreshToken(@Req() request: Request, @Res({ passthrough: true }) response: Response) {
     const refreshToken = request.cookies['refresh_token'];
     return this.authService.refreshAccessToken(refreshToken, response);
   }
 
   @Post('/logout')
-  @ResponseMessage('Logout successfully')
+  @ResponseMessage('Logout')
   handleLogout(@Res({ passthrough: true }) response: Response, @User() user: IUser) {
     return this.authService.logout(response, user);
   }

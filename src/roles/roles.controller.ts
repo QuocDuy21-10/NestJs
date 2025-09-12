@@ -10,13 +10,13 @@ export class RolesController {
   constructor(private readonly rolesService: RolesService) {}
 
   @Post()
-  @ResponseMessage('Role created successfully')
+  @ResponseMessage('Create role')
   create(@Body() createRoleDto: CreateRoleDto, @User() user: IUser) {
     return this.rolesService.create(createRoleDto, user);
   }
 
   @Get()
-  @ResponseMessage('Roles have been retrieved successfully')
+  @ResponseMessage('Get roles list')
   findAll(
     @Query('current') currentPage: string,
     @Query('pageSize') limit: string,
@@ -26,19 +26,19 @@ export class RolesController {
   }
 
   @Get(':id')
-  @ResponseMessage('Role has been retrieved successfully')
+  @ResponseMessage('Get role details by id')
   findOne(@Param('id') id: string) {
     return this.rolesService.findOne(id);
   }
 
   @Patch(':id')
-  @ResponseMessage('Role updated successfully')
+  @ResponseMessage('Update role')
   update(@Param('id') id: string, @Body() updateRoleDto: UpdateRoleDto, @User() user: IUser) {
     return this.rolesService.update(id, updateRoleDto, user);
   }
 
   @Delete(':id')
-  @ResponseMessage('Role deleted successfully')
+  @ResponseMessage('Delete role')
   remove(@Param('id') id: string, @User() user: IUser) {
     return this.rolesService.remove(id, user);
   }

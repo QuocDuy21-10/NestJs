@@ -10,14 +10,14 @@ export class CompaniesController {
   constructor(private readonly companiesService: CompaniesService) {}
 
   @Post()
-  @ResponseMessage('Company created successfully')
+  @ResponseMessage('Create company')
   create(@Body() createCompanyDto: CreateCompanyDto, @User() user: IUser) {
     return this.companiesService.create(createCompanyDto, user);
   }
 
   @Get()
   @Public()
-  @ResponseMessage('Companies found successfully')
+  @ResponseMessage('Get companies list')
   findAll(
     @Query('current') currentPage: string,
     @Query('pageSize') limit: string,
@@ -28,19 +28,19 @@ export class CompaniesController {
 
   @Get(':id')
   @Public()
-  @ResponseMessage('Company found successfully')
+  @ResponseMessage('Get company detail by id')
   findOne(@Param('id') id: string) {
     return this.companiesService.findOne(id);
   }
 
   @Patch(':id')
-  @ResponseMessage('Company updated successfully')
+  @ResponseMessage('Update company')
   update(@Param('id') id: string, @Body() updateCompanyDto: UpdateCompanyDto, @User() user: IUser) {
     return this.companiesService.update(id, updateCompanyDto, user);
   }
 
   @Delete(':id')
-  @ResponseMessage('Company deleted successfully')
+  @ResponseMessage('Delete company')
   remove(@Param('id') id: string, @User() user: IUser) {
     return this.companiesService.remove(id, user);
   }
