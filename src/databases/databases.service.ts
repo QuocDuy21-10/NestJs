@@ -19,7 +19,7 @@ export class DatabasesService implements OnModuleInit {
     private userService: UsersService,
   ) {}
   async onModuleInit() {
-    const isInit = this.configService.get<string>('SHOULD_INIT_SAMPLE_DATA');
+    const isInit = this.configService.get<string>('NODE_ENV') === 'development' ? true : false;
     if (Boolean(isInit)) {
       const countUser = await this.userModel.count({});
       const countPermission = await this.permissionModel.count({});
