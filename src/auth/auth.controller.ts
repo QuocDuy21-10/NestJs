@@ -1,19 +1,23 @@
-import { Body, Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { Public, ResponseMessage, User } from 'src/decorator/customize';
-import { LocalAuthGuard } from './local-auth.guard';
-import { RegisterUserDto } from 'src/users/dto/create-user.dto';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { Request, Response } from 'express';
-import { IUser } from 'src/users/users.interface';
-import { RolesService } from 'src/roles/roles.service';
 import { ThrottlerGuard } from '@nestjs/throttler';
+import { Body, Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
 
+import { AuthService } from './auth.service';
+import { IUser } from 'src/users/users.interface';
+import { LocalAuthGuard } from './local-auth.guard';
+import { RolesService } from 'src/roles/roles.service';
+import { LoginUserDto, RegisterUserDto } from 'src/users/dto/create-user.dto';
+import { Public, ResponseMessage, User } from 'src/decorator/customize';
+
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService, private rolesService: RolesService) {}
   @Public()
   @UseGuards(LocalAuthGuard)
   @UseGuards(ThrottlerGuard)
+  @ApiBody({ type: LoginUserDto })
   @Post('/login')
   @ResponseMessage('Login')
   handleLogin(@Req() req, @Res({ passthrough: true }) response: Response) {

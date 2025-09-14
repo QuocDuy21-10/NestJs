@@ -1,13 +1,16 @@
+import { Cron } from '@nestjs/schedule';
+import { ApiTags } from '@nestjs/swagger';
+import { InjectModel } from '@nestjs/mongoose';
 import { Controller, Get } from '@nestjs/common';
-import { MailService } from './mail.service';
-import { Public, ResponseMessage } from 'src/decorator/customize';
 import { MailerService } from '@nestjs-modules/mailer';
 import { SoftDeleteModel } from 'soft-delete-plugin-mongoose';
+
+import { MailService } from './mail.service';
+import { Public, ResponseMessage } from 'src/decorator/customize';
 import { Subscriber, SubscriberDocument } from 'src/subscribers/schemas/subscriber.schema';
 import { Job, JobDocument } from 'src/jobs/schemas/job.schema';
-import { InjectModel } from '@nestjs/mongoose';
-import { Cron, CronExpression } from '@nestjs/schedule';
 
+@ApiTags('Mail')
 @Controller('mail')
 export class MailController {
   constructor(
